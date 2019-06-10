@@ -2,17 +2,12 @@
 
 public class PlayerInput : MonoBehaviour
 {
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    public float Horizontal { get; private set; }
+    public bool Jumping { get; private set; }
+    
     void Update()
     {
-        
+        Horizontal = Input.GetAxisRaw("Horizontal");
+        Jumping = Input.GetAxisRaw("Vertical") > 0;
     }
 }

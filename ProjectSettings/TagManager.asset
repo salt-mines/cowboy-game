@@ -13,7 +13,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Platform
   - 
   - 
   - 
@@ -38,6 +38,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 2345758095
+    locked: 0
+  - name: Platforms
+    uniqueID: 2443340257
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
