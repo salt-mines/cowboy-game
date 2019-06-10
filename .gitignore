@@ -18,6 +18,9 @@
 !.vscode/launch.json
 !.vscode/extensions.json
 
+# Rider
+.idea/
+
 # Gradle cache directory
 .gradle/
 

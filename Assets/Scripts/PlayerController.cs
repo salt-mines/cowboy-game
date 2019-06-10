@@ -1,62 +1,116 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-[RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(PlayerInput), typeof(CharacterController2D))]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private float movementSpeed = 6.0f;
 
     [SerializeField]
-    private LayerMask groundLayer;
+    private float jumpSpeed = 6.0f;
 
-    private float groundedDistance = 0.02f;
+    /// <summary>
+    /// How long holding the jump key increases jump height.
+    /// </summary>
+    [Tooltip("How long holding the jump key increases jump height")]
+    [SerializeField]
+    private float jumpSustain = 0.4f;
+
+    /// <summary>
+    /// Gravity for falling without jumping.
+    /// </summary>
+    [Tooltip("Gravity for falling without jumping")]
+    [SerializeField]
+    private float fallingGravity = 10f;
+
+    /// <summary>
+    /// Gravity for low jumping.
+    /// </summary>
+    [Tooltip("Gravity for low jumping")]
+    [SerializeField]
+    private float jumpGravityStart = 10f;
+
+    /// <summary>
+    /// Gravity for high jumping.
+    /// </summary>
+    [Tooltip("Gravity for high jumping")]
+    [SerializeField]
+    private float jumpGravityEnd = 10f;
+
+    private float currentJumpGravity;
 
     private PlayerInput playerInput;
+    private CharacterController2D controller;
 
-    private Vector3 deltaMovement = new Vector3();
-    private bool grounded = false;
+    private Vector3 deltaMovement;
+
+    private float spentJumping;
 
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
+        controller = GetComponent<CharacterController2D>();
+
+        currentJumpGravity = jumpGravityStart;
     }
 
     void FixedUpdate()
     {
-        deltaMovement.x = playerInput.Horizontal * movementSpeed * Time.deltaTime;
+        var grounded = controller.Grounded;
+        var jumping = playerInput.Jumping;
 
-        if (playerInput.Jumping)
-        {
-            grounded = false;
-            deltaMovement.y = 10.0f * Time.deltaTime;
-        }
-        else if (!grounded)
-        {
-            deltaMovement.y = Physics2D.gravity.y * Time.deltaTime;
-        }
+        deltaMovement.x = playerInput.Horizontal * movementSpeed;
 
-        if (deltaMovement.y != 0)
+        // Prevent continuing jump again if player lets go of the key
+        if (!jumping && spentJumping > 0)
         {
-            MoveVertical(ref deltaMovement);
+            spentJumping = jumpSustain;
         }
 
-        transform.Translate(deltaMovement);
-    }
-
-    void MoveVertical(ref Vector3 delta)
-    {
-        var goingUp = delta.y > 0;
-        var distance = Mathf.Abs(delta.y);
-        var direction = goingUp ? Vector2.up : -Vector2.up;
-
-        Debug.DrawRay(transform.position, direction, Color.red);
-        var hit = Physics2D.Raycast(transform.position, direction, distance, groundLayer);
-        if (hit && !goingUp)
+        if (jumping && grounded)
         {
-            delta.y = goingUp ? hit.distance : -hit.distance;
-            delta.y += groundedDistance;
+            // Jumping from the ground
+            deltaMovement.y = jumpSpeed;
+            spentJumping = 0;
+            currentJumpGravity = jumpGravityStart;
+        }
+        else if (jumping && spentJumping < jumpSustain)
+        {
+            // Continuing jump while jump key is held
+            deltaMovement.y = jumpSpeed;
+            spentJumping += Time.deltaTime;
+
+            // If jump key is being held, scale jump gravity towards jumpGravityEnd.
+            if (jumpSustain > 0)
+            {
+                currentJumpGravity = Mathf.Lerp(jumpGravityStart, jumpGravityEnd, spentJumping / jumpSustain);
+            }
+        }
+        else
+        {
+            // Start falling
+            if (spentJumping > 0)
+            {
+                deltaMovement.y -= currentJumpGravity * Time.deltaTime;
+            }
+            else
+            {
+                deltaMovement.y -= fallingGravity * Time.deltaTime;
+            }
         }
 
-        grounded = hit && !goingUp;
+        if (grounded)
+        {
+            // Reset jump timer
+            spentJumping = 0;
+        }
+
+        controller.Move(deltaMovement * Time.deltaTime);
+
+        if (grounded)
+        {
+            deltaMovement.y = 0;
+        }
     }
 }
