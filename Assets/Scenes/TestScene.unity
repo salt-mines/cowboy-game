@@ -272,7 +272,7 @@ PrefabInstance:
     - target: {fileID: 123529663726237009, guid: c5cd9e97ecf36e848b7748fef75f6567,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 123529663726237009, guid: c5cd9e97ecf36e848b7748fef75f6567,
         type: 3}
@@ -511,6 +511,61 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8067391907167731154, guid: 2e3ea76e3e3a8b34c8af5997874457cc,
+        type: 3}
+      propertyPath: movementAcceleration.m_Curve.Array.data[0].value
+      value: 0.10492712
+      objectReference: {fileID: 0}
+    - target: {fileID: 8067391907167731154, guid: 2e3ea76e3e3a8b34c8af5997874457cc,
+        type: 3}
+      propertyPath: movementAcceleration.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8067391907167731154, guid: 2e3ea76e3e3a8b34c8af5997874457cc,
+        type: 3}
+      propertyPath: movementDeceleration.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8067391907167731154, guid: 2e3ea76e3e3a8b34c8af5997874457cc,
+        type: 3}
+      propertyPath: movementDeceleration.m_Curve.Array.data[0].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8067391907167731154, guid: 2e3ea76e3e3a8b34c8af5997874457cc,
+        type: 3}
+      propertyPath: movementDeceleration.m_Curve.Array.data[1].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8067391907167731154, guid: 2e3ea76e3e3a8b34c8af5997874457cc,
+        type: 3}
+      propertyPath: movementDeceleration.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8067391907167731154, guid: 2e3ea76e3e3a8b34c8af5997874457cc,
+        type: 3}
+      propertyPath: movementDeceleration.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8067391907167731154, guid: 2e3ea76e3e3a8b34c8af5997874457cc,
+        type: 3}
+      propertyPath: movementDeceleration.m_Curve.Array.data[0].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8067391907167731154, guid: 2e3ea76e3e3a8b34c8af5997874457cc,
+        type: 3}
+      propertyPath: movementDeceleration.m_Curve.Array.data[0].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 8067391907167731154, guid: 2e3ea76e3e3a8b34c8af5997874457cc,
+        type: 3}
+      propertyPath: movementDeceleration.m_Curve.Array.data[1].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8067391907167731154, guid: 2e3ea76e3e3a8b34c8af5997874457cc,
+        type: 3}
+      propertyPath: movementDeceleration.m_Curve.Array.data[1].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e3ea76e3e3a8b34c8af5997874457cc, type: 3}
 --- !u!1001 &4692520871735236553
@@ -616,26 +671,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5148064432557291445, guid: 4d6d098b8d4111f4dbf35097287fbd29,
         type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5148064432557291445, guid: 4d6d098b8d4111f4dbf35097287fbd29,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5148064432557291445, guid: 4d6d098b8d4111f4dbf35097287fbd29,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5148064432557291445, guid: 4d6d098b8d4111f4dbf35097287fbd29,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5148064432557291445, guid: 4d6d098b8d4111f4dbf35097287fbd29,
-        type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
@@ -653,11 +688,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5148064432557291338, guid: 4d6d098b8d4111f4dbf35097287fbd29,
-        type: 3}
-      propertyPath: orthographic size
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6d098b8d4111f4dbf35097287fbd29, type: 3}
