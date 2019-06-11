@@ -25,15 +25,16 @@ public class BulletScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("hello");
-        if(collision.gameObject.tag == "Player")
+        
+        if(collision.gameObject.tag == "Player" && gameObject.layer == 12)
         {
+            Destroy(gameObject);
             Destroy(collision.gameObject);
             Debug.Log("Player died!");
         }
-
-        if(collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" && gameObject.layer == 11)
         {
+            Destroy(gameObject);
             Destroy(collision.gameObject);
             Debug.Log("Enemy killed!");
         }

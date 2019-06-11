@@ -23,6 +23,7 @@ public class ShootingScript : MonoBehaviour
 
     void Shoot()
     {
-        Instantiate(bulletPrefab, gameObject.transform.position, gameObject.transform.rotation);
+        GameObject firedBullet = Instantiate(bulletPrefab, gameObject.transform.position, gameObject.transform.rotation);
+        firedBullet.layer = 11;
     }
 }
