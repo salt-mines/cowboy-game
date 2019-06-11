@@ -6,8 +6,6 @@ public class BulletScript : MonoBehaviour
 {
     public float BulletSpeed = 10f;
 
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -27,18 +25,18 @@ public class BulletScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        Debug.Log("hello");
+        if(collision.gameObject.tag == "Player")
         {
             Destroy(collision.gameObject);
             Debug.Log("Player died!");
         }
 
-        if(collision.gameObject.CompareTag("Enemy"))
+        if(collision.gameObject.tag == "Enemy")
         {
             Destroy(collision.gameObject);
             Debug.Log("Enemy killed!");
         }
-            
     }
 
     private void OnBecameInvisible()
