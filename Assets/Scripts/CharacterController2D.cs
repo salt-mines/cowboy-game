@@ -5,19 +5,14 @@ using UnityEngine;
 public class CharacterController2D : MonoBehaviour
 {
     private BoxCollider2D boxCollider;
-
-    [SerializeField]
-    private LayerMask groundLayer;
-
-    [SerializeField]
-    private LayerMask oneWayLayer;
-
-    [SerializeField]
+    
+    public LayerMask groundLayer;
+    public LayerMask oneWayLayer;
+    
     [Range(0f, 0.3f)]
-    private float collisionInset = 0.02f;
-
-    [SerializeField]
-    private bool flipForDirection = true;
+    public float collisionInset = 0.02f;
+    
+    public bool flipForDirection = true;
 
     public CollisionState collisionState;
     public bool Grounded => collisionState.bottom;
@@ -26,6 +21,8 @@ public class CharacterController2D : MonoBehaviour
 
     private Vector2[] topRays;
     private Vector2[] bottomRays;
+    private Vector2[] leftRays;
+    private Vector2[] rightRays;
 
     private float previousDirection;
 
@@ -49,8 +46,13 @@ public class CharacterController2D : MonoBehaviour
         rayOrigins.bottom = new Vector2(0, -extents.y);
         rayOrigins.bottomRight = new Vector2(extents.x, -extents.y);
 
-        topRays = new[] {rayOrigins.topLeft, rayOrigins.top, rayOrigins.topRight};
-        bottomRays = new[] {rayOrigins.bottomLeft, rayOrigins.bottom, rayOrigins.bottomRight};
+        var right = new Vector2(extents.x, 0);
+        var left = new Vector2(-extents.x, 0);
+
+        topRays = new[] { rayOrigins.topLeft, rayOrigins.top, rayOrigins.topRight };
+        bottomRays = new[] { rayOrigins.bottomLeft, rayOrigins.bottom, rayOrigins.bottomRight };
+        rightRays = new[] { rayOrigins.topRight, right, rayOrigins.bottomRight };
+        leftRays = new[] { rayOrigins.topLeft, left, rayOrigins.bottomLeft };
     }
 
     public void LowerToGround()
@@ -84,16 +86,49 @@ public class CharacterController2D : MonoBehaviour
             transform.localScale = scale;
             previousDirection = delta.x;
         }
+
+        var goingRight = delta.x > 0;
+        var direction = goingRight ? Vector2.right : Vector2.left;
+
+        var distance = Mathf.Abs(delta.x) + collisionInset;
+
+        var rays = goingRight ? rightRays : leftRays;
+        foreach (var ray in rays)
+        {
+            var origin = new Vector2(
+                transform.position.x + boxCollider.offset.x + ray.x,
+                transform.position.y + boxCollider.offset.y + ray.y
+            );
+
+            Debug.DrawRay(origin, direction * distance, Color.red);
+
+            var hit = Physics2D.Raycast(origin, direction, distance, groundLayer);
+            if (!hit) continue;
+
+            delta.x = goingRight ? hit.distance : -hit.distance;
+
+            if (goingRight)
+            {
+                delta.x -= collisionInset;
+                collisionState.right = true;
+            }
+            else
+            {
+                delta.x += collisionInset;
+                collisionState.left = true;
+            }
+
+            if (hit.distance < collisionInset + 0.001f)
+                break;
+        }
     }
 
     private void MoveVertical(ref Vector3 delta)
     {
         var goingUp = delta.y > 0;
-        var direction = goingUp ? Vector2.up : -Vector2.up;
+        var direction = goingUp ? Vector2.up : Vector2.down;
 
         var distance = Mathf.Abs(delta.y) + collisionInset;
-        var center = (Vector2) transform.position + boxCollider.offset;
-        center.x += delta.x;
 
         LayerMask layerMask = groundLayer;
         if (goingUp)
@@ -104,7 +139,10 @@ public class CharacterController2D : MonoBehaviour
         var rayList = goingUp ? topRays : bottomRays;
         foreach (var corner in rayList)
         {
-            var origin = center + corner;
+            var origin = new Vector2(
+                transform.position.x + boxCollider.offset.x + delta.x + corner.x,
+                transform.position.y + boxCollider.offset.y + corner.y
+            );
 
             Debug.DrawRay(origin, direction * distance, Color.red);
 

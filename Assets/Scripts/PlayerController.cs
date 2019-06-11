@@ -83,6 +83,7 @@ public class PlayerController : MonoBehaviour
 
     private PlayerInput playerInput;
     private CharacterController2D controller;
+    private Animator animator;
 
     private Vector3 deltaMovement;
 
@@ -97,6 +98,7 @@ public class PlayerController : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         controller = GetComponent<CharacterController2D>();
+        animator = GetComponent<Animator>();
 
         currentJumpGravity = jumpGravityStart;
 
@@ -152,6 +154,9 @@ public class PlayerController : MonoBehaviour
                 isJumping = true;
                 hasStoppedHoldingJump = false;
                 currentJumpGravity = jumpGravityStart;
+
+                if (animator)
+                    animator.SetTrigger("Jump");
             }
         }
         else if ((isJumping && holdingJump && spentJumping < jumpSustain) || (isJumping && spentJumping < jumpMinSustain))
@@ -179,14 +184,21 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (!holdingJump && grounded)
+        controller.Move(deltaMovement * Time.deltaTime);
+
+        if (isJumping && controller.Grounded)
         {
             // Reset jump timer
             spentJumping = 0;
             isJumping = false;
+            if (animator)
+                animator.SetTrigger("Land");
         }
-
-        controller.Move(deltaMovement * Time.deltaTime);
+        else
+        {
+            if (animator)
+                animator.ResetTrigger("Land");
+        }
 
         if (!holdingJump && controller.Grounded)
         {

@@ -117,6 +117,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   collisionInset: 0.02
+  flipForDirection: 1
 --- !u!114 &8067391907167731154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,14 +133,16 @@ MonoBehaviour:
   movementSpeed: 6
   accelerationTime: 0.2
   decelerationTime: 0.1
+  directionChangeTime: 0.1
   airControlAccelMultiplier: 0.8
   airControlDecelMultiplier: 0.1
+  airDirectionChangeMultiplier: 0.8
   jumpSpeed: 12
   jumpSustain: 0.16
   jumpMinSustain: 0.02
   fallingGravity: 60
   jumpGravityStart: 80
-  jumpGravityEnd: 60
+  jumpGravityEnd: 58
   lowerToGroundOnAwake: 1
 --- !u!61 &1080236174093298114
 BoxCollider2D:
