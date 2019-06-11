@@ -129,6 +129,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 6
+  accelerationTime: 0.2
+  decelerationTime: 0.1
+  airControlMultiplier: 1
   jumpSpeed: 12
   jumpSustain: 0.16
   jumpMinSustain: 0.02

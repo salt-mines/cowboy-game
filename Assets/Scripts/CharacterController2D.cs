@@ -25,7 +25,7 @@ public class CharacterController2D : MonoBehaviour
 
     public CollisionState collisionState;
 
-    void Start()
+    void Awake()
     {
         boxCollider = GetComponent<BoxCollider2D>();
         CalcRayOrigins();
@@ -47,6 +47,11 @@ public class CharacterController2D : MonoBehaviour
 
         topRays = new[] {rayOrigins.topLeft, rayOrigins.top, rayOrigins.topRight};
         bottomRays = new[] {rayOrigins.bottomLeft, rayOrigins.bottom, rayOrigins.bottomRight};
+    }
+
+    public void LowerToGround()
+    {
+        Move(new Vector2(0, float.NegativeInfinity));
     }
 
     public void Move(Vector3 deltaMovement)

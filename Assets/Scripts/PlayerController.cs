@@ -8,6 +8,18 @@ public class PlayerController : MonoBehaviour
     private float movementSpeed = 6.0f;
 
     [SerializeField]
+    private float accelerationTime = 0.2f;
+
+    [SerializeField]
+    private float decelerationTime = 0.1f;
+
+    [SerializeField]
+    private float airControlAccelMultiplier = 0.8f;
+
+    [SerializeField]
+    private float airControlDecelMultiplier = 0.1f;
+
+    [SerializeField]
     private float jumpSpeed = 6.0f;
 
     /// <summary>
@@ -45,6 +57,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float jumpGravityEnd = 10f;
 
+    [SerializeField]
+    private bool lowerToGroundOnAwake = true;
+
     private float currentJumpGravity;
 
     private PlayerInput playerInput;
@@ -52,11 +67,14 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 deltaMovement;
 
+    private float currentHorizontalMovement;
+    private float currentAcceleration;
+
     private float spentJumping;
     private bool isJumping;
     private bool hasStoppedHoldingJump;
 
-    void Start()
+    void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         controller = GetComponent<CharacterController2D>();
@@ -67,14 +85,35 @@ public class PlayerController : MonoBehaviour
         {
             jumpMinSustain = jumpSustain;
         }
+
+        if (lowerToGroundOnAwake)
+            controller.LowerToGround();
+    }
+
+    private bool SameSign(float num1, float num2)
+    {
+        return num1 < 0 && num2 < 0 || num1 >= 0 && num2 >= 0;
     }
 
     void FixedUpdate()
     {
         var grounded = controller.Grounded;
         var holdingJump = playerInput.Jumping;
+        var targetMovement = playerInput.Horizontal;
 
-        deltaMovement.x = playerInput.Horizontal * movementSpeed;
+        var speed = accelerationTime;
+        if (!grounded)
+            speed *= 1 / airControlAccelMultiplier;
+
+        if (Mathf.Abs(targetMovement) < Mathf.Abs(currentHorizontalMovement) || !SameSign(currentHorizontalMovement, targetMovement))
+        {
+            speed = decelerationTime;
+            if (!grounded)
+                speed *= 1 / airControlDecelMultiplier;
+        }
+
+        currentHorizontalMovement = Mathf.SmoothDamp(currentHorizontalMovement, targetMovement, ref currentAcceleration, speed);
+        deltaMovement.x = currentHorizontalMovement * movementSpeed;
 
         // Prevent continuing jump again if player lets go of the key
         if (!holdingJump && isJumping && spentJumping > jumpMinSustain)
