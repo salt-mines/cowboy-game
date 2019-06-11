@@ -12,18 +12,22 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField]
     private LayerMask oneWayLayer;
 
-    public bool Grounded => collisionState.bottom;
-
     [SerializeField]
     [Range(0f, 0.3f)]
     private float collisionInset = 0.02f;
+
+    [SerializeField]
+    private bool flipForDirection = true;
+
+    public CollisionState collisionState;
+    public bool Grounded => collisionState.bottom;
 
     private RayOrigins rayOrigins;
 
     private Vector2[] topRays;
     private Vector2[] bottomRays;
 
-    public CollisionState collisionState;
+    private float previousDirection;
 
     void Awake()
     {
@@ -58,12 +62,28 @@ public class CharacterController2D : MonoBehaviour
     {
         collisionState.Reset();
 
+        if (deltaMovement.x != 0f)
+        {
+            MoveHorizontal(ref deltaMovement);
+        }
+
         if (deltaMovement.y != 0f)
         {
             MoveVertical(ref deltaMovement);
         }
 
         transform.Translate(deltaMovement, Space.World);
+    }
+
+    private void MoveHorizontal(ref Vector3 delta)
+    {
+        if (flipForDirection && !Utils.SameSign(delta.x, previousDirection))
+        {
+            Vector3 scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
+            previousDirection = delta.x;
+        }
     }
 
     private void MoveVertical(ref Vector3 delta)
