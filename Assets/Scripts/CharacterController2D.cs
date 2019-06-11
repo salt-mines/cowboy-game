@@ -14,6 +14,8 @@ public class CharacterController2D : MonoBehaviour
     
     public bool flipForDirection = true;
 
+    public bool ignoreOneWayThisFrame;
+
     public CollisionState collisionState;
     public bool Grounded => collisionState.bottom;
 
@@ -131,9 +133,10 @@ public class CharacterController2D : MonoBehaviour
         var distance = Mathf.Abs(delta.y) + collisionInset;
 
         LayerMask layerMask = groundLayer;
-        if (goingUp)
+        if (goingUp || ignoreOneWayThisFrame)
         {
             layerMask &= ~oneWayLayer;
+            ignoreOneWayThisFrame = false;
         }
 
         var rayList = goingUp ? topRays : bottomRays;

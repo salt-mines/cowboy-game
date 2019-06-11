@@ -184,6 +184,9 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (playerInput.Down && grounded)
+            controller.ignoreOneWayThisFrame = true;
+
         controller.Move(deltaMovement * Time.deltaTime);
 
         if (isJumping && controller.Grounded)
