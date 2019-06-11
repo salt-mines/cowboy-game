@@ -8,6 +8,6 @@ public class PlayerInput : MonoBehaviour
     void Update()
     {
         Horizontal = Input.GetAxisRaw("Horizontal");
-        Jumping = Input.GetAxisRaw("Vertical") > 0;
+        Jumping = Input.GetAxisRaw("Jump") > 0;
     }
 }
