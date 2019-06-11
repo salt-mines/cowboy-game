@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
 
     private float spentJumping;
     private bool isJumping;
+    private bool hasStoppedHoldingJump;
 
     void Start()
     {
@@ -78,19 +79,22 @@ public class PlayerController : MonoBehaviour
         // Prevent continuing jump again if player lets go of the key
         if (!holdingJump && isJumping && spentJumping > jumpMinSustain)
         {
-            Debug.Log(spentJumping);
             spentJumping = jumpSustain;
         }
 
         if (holdingJump && grounded)
         {
-            // Jumping from the ground
-            deltaMovement.y = jumpSpeed;
-            spentJumping = 0;
-            isJumping = true;
-            currentJumpGravity = jumpGravityStart;
+            if (hasStoppedHoldingJump)
+            {
+                // Jumping from the ground
+                deltaMovement.y = jumpSpeed;
+                spentJumping = 0;
+                isJumping = true;
+                hasStoppedHoldingJump = false;
+                currentJumpGravity = jumpGravityStart;
+            }
         }
-        else if ((holdingJump && spentJumping < jumpSustain) || (isJumping && spentJumping < jumpMinSustain))
+        else if ((isJumping && holdingJump && spentJumping < jumpSustain) || (isJumping && spentJumping < jumpMinSustain))
         {
             // Continuing jump while jump key is held
             deltaMovement.y = jumpSpeed;
@@ -123,6 +127,11 @@ public class PlayerController : MonoBehaviour
         }
 
         controller.Move(deltaMovement * Time.deltaTime);
+
+        if (!holdingJump && controller.Grounded)
+        {
+            hasStoppedHoldingJump = true;
+        }
 
         if (controller.Grounded)
         {
