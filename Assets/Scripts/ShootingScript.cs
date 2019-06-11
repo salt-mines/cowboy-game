@@ -23,6 +23,16 @@ public class ShootingScript : MonoBehaviour
 
     void Shoot()
     {
+        if(Input.GetAxisRaw("Horizontal") == 1 && Input.GetAxisRaw("Vertical") == 1)
+        {
+            transform.Rotate(0, 0, -45);
+        }else if(Input.GetAxisRaw("Horizontal") == 1 && Input.GetAxisRaw("Vertical") == 0)
+        {
+            transform.Rotate(0, 0, -90);
+        }else if(Input.GetAxisRaw("Horizontal") == 1 && Input.GetAxisRaw("Vertical") == -1){
+            transform.Rotate(0, 0, 0);
+        }
+
         GameObject firedBullet = Instantiate(bulletPrefab, gameObject.transform.position, gameObject.transform.rotation);
         firedBullet.layer = 11;
     }
