@@ -131,6 +131,7 @@ MonoBehaviour:
   movementSpeed: 6
   jumpSpeed: 12
   jumpSustain: 0.16
+  jumpMinSustain: 0.02
   fallingGravity: 60
   jumpGravityStart: 80
   jumpGravityEnd: 60

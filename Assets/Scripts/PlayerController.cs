@@ -18,6 +18,13 @@ public class PlayerController : MonoBehaviour
     private float jumpSustain = 0.4f;
 
     /// <summary>
+    /// Minimum jump hold length in seconds.
+    /// </summary>
+    [Tooltip("Minimum jump hold length in seconds")]
+    [SerializeField]
+    private float jumpMinSustain = 0.05f;
+
+    /// <summary>
     /// Gravity for falling without jumping.
     /// </summary>
     [Tooltip("Gravity for falling without jumping")]
@@ -46,6 +53,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 deltaMovement;
 
     private float spentJumping;
+    private bool isJumping;
 
     void Start()
     {
@@ -53,29 +61,36 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController2D>();
 
         currentJumpGravity = jumpGravityStart;
+
+        if (jumpMinSustain > jumpSustain)
+        {
+            jumpMinSustain = jumpSustain;
+        }
     }
 
     void FixedUpdate()
     {
         var grounded = controller.Grounded;
-        var jumping = playerInput.Jumping;
+        var holdingJump = playerInput.Jumping;
 
         deltaMovement.x = playerInput.Horizontal * movementSpeed;
 
         // Prevent continuing jump again if player lets go of the key
-        if (!jumping && spentJumping > 0)
+        if (!holdingJump && isJumping && spentJumping > jumpMinSustain)
         {
+            Debug.Log(spentJumping);
             spentJumping = jumpSustain;
         }
 
-        if (jumping && grounded)
+        if (holdingJump && grounded)
         {
             // Jumping from the ground
             deltaMovement.y = jumpSpeed;
             spentJumping = 0;
+            isJumping = true;
             currentJumpGravity = jumpGravityStart;
         }
-        else if (jumping && spentJumping < jumpSustain)
+        else if ((holdingJump && spentJumping < jumpSustain) || (isJumping && spentJumping < jumpMinSustain))
         {
             // Continuing jump while jump key is held
             deltaMovement.y = jumpSpeed;
@@ -90,7 +105,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             // Start falling
-            if (spentJumping > 0)
+            if (isJumping)
             {
                 deltaMovement.y -= currentJumpGravity * Time.deltaTime;
             }
@@ -100,15 +115,16 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (grounded)
+        if (!holdingJump && grounded)
         {
             // Reset jump timer
             spentJumping = 0;
+            isJumping = false;
         }
 
         controller.Move(deltaMovement * Time.deltaTime);
 
-        if (grounded)
+        if (controller.Grounded)
         {
             deltaMovement.y = 0;
         }
