@@ -109,11 +109,6 @@ public class PlayerController : MonoBehaviour
             controller.LowerToGround();
     }
 
-    private bool SameSign(float num1, float num2)
-    {
-        return num1 < 0 && num2 < 0 || num1 >= 0 && num2 >= 0;
-    }
-
     void FixedUpdate()
     {
         var grounded = controller.Grounded;
@@ -131,7 +126,7 @@ public class PlayerController : MonoBehaviour
                 speed *= 1 / airControlDecelMultiplier;
         }
 
-        if (!SameSign(currentHorizontalMovement, targetMovement) && targetMovement != 0f)
+        if (!Utils.SameSign(currentHorizontalMovement, targetMovement) && targetMovement != 0f)
         {
             speed = directionChangeTime;
             if (!grounded)
