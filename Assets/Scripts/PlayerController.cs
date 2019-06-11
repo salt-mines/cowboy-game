@@ -4,21 +4,35 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerInput), typeof(CharacterController2D))]
 public class PlayerController : MonoBehaviour
 {
+    [Range(0.1f, 50f)]
     [SerializeField]
     private float movementSpeed = 6.0f;
 
+    [Range(0f, 10f)]
     [SerializeField]
     private float accelerationTime = 0.2f;
 
+    [Range(0f, 10f)]
     [SerializeField]
     private float decelerationTime = 0.1f;
 
+    [Range(0f, 10f)]
+    [SerializeField]
+    private float directionChangeTime = 0.1f;
+
+    [Range(0.01f, 10f)]
     [SerializeField]
     private float airControlAccelMultiplier = 0.8f;
 
+    [Range(0.01f, 10f)]
     [SerializeField]
     private float airControlDecelMultiplier = 0.1f;
 
+    [Range(0.01f, 10f)]
+    [SerializeField]
+    private float airDirectionChangeMultiplier = 0.8f;
+
+    [Range(0.1f, 50f)]
     [SerializeField]
     private float jumpSpeed = 6.0f;
 
@@ -26,6 +40,7 @@ public class PlayerController : MonoBehaviour
     /// How long holding the jump key increases jump height.
     /// </summary>
     [Tooltip("How long holding the jump key increases jump height")]
+    [Range(0f, 2f)]
     [SerializeField]
     private float jumpSustain = 0.4f;
 
@@ -33,6 +48,7 @@ public class PlayerController : MonoBehaviour
     /// Minimum jump hold length in seconds.
     /// </summary>
     [Tooltip("Minimum jump hold length in seconds")]
+    [Range(0f, 2f)]
     [SerializeField]
     private float jumpMinSustain = 0.05f;
 
@@ -40,6 +56,7 @@ public class PlayerController : MonoBehaviour
     /// Gravity for falling without jumping.
     /// </summary>
     [Tooltip("Gravity for falling without jumping")]
+    [Range(0f, 1000f)]
     [SerializeField]
     private float fallingGravity = 10f;
 
@@ -47,6 +64,7 @@ public class PlayerController : MonoBehaviour
     /// Gravity for low jumping.
     /// </summary>
     [Tooltip("Gravity for low jumping")]
+    [Range(0f, 1000f)]
     [SerializeField]
     private float jumpGravityStart = 10f;
 
@@ -54,6 +72,7 @@ public class PlayerController : MonoBehaviour
     /// Gravity for high jumping.
     /// </summary>
     [Tooltip("Gravity for high jumping")]
+    [Range(0f, 1000f)]
     [SerializeField]
     private float jumpGravityEnd = 10f;
 
@@ -105,11 +124,18 @@ public class PlayerController : MonoBehaviour
         if (!grounded)
             speed *= 1 / airControlAccelMultiplier;
 
-        if (Mathf.Abs(targetMovement) < Mathf.Abs(currentHorizontalMovement) || !SameSign(currentHorizontalMovement, targetMovement))
+        if (Mathf.Abs(targetMovement) < Mathf.Abs(currentHorizontalMovement))
         {
             speed = decelerationTime;
             if (!grounded)
                 speed *= 1 / airControlDecelMultiplier;
+        }
+
+        if (!SameSign(currentHorizontalMovement, targetMovement) && targetMovement != 0f)
+        {
+            speed = directionChangeTime;
+            if (!grounded)
+                speed *= 1 / airDirectionChangeMultiplier;
         }
 
         currentHorizontalMovement = Mathf.SmoothDamp(currentHorizontalMovement, targetMovement, ref currentAcceleration, speed);
