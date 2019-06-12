@@ -32,17 +32,14 @@ SpriteAtlas:
     packables:
     - {fileID: 21300000, guid: 459bc1d28cd01a04385d11e015ab0e6d, type: 3}
     - {fileID: 21300000, guid: 5995bb68544d0124eb25f005670f2506, type: 3}
-    - {fileID: 21300000, guid: df2cc6670ebbc29489f7bf939374f563, type: 3}
-    totalSpriteSurfaceArea: 2065536
+    totalSpriteSurfaceArea: 2000000
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 459bc1d28cd01a04385d11e015ab0e6d, type: 3}
-  - {fileID: 21300000, guid: df2cc6670ebbc29489f7bf939374f563, type: 3}
   - {fileID: 21300000, guid: 5995bb68544d0124eb25f005670f2506, type: 3}
   m_PackedSpriteNamesToIndex:
   - cowboy_shoot
-  - Cactusaur
   - cowboy_idle
   m_Tag: Sprites
   m_IsVariant: 0
