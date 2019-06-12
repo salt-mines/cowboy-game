@@ -77,6 +77,9 @@ public class PlayerController : MonoBehaviour
     private float jumpGravityEnd = 10f;
 
     [SerializeField]
+    private float jumpMercyTime = 0.04f;
+
+    [SerializeField]
     private bool lowerToGroundOnAwake = true;
 
     private float currentJumpGravity;
@@ -93,6 +96,8 @@ public class PlayerController : MonoBehaviour
     private float spentJumping;
     private bool isJumping;
     private bool hasStoppedHoldingJump;
+
+    private float startedFalling;
 
     void Awake()
     {
@@ -152,10 +157,11 @@ public class PlayerController : MonoBehaviour
         {
             controller.ignoreOneWayThisFrame = true;
         }
-        else if (holdingJump && grounded)
+        else if (holdingJump && (grounded || (startedFalling > 0 && startedFalling < jumpMercyTime)))
         {
             if (hasStoppedHoldingJump)
             {
+                startedFalling = 0;
                 // Jumping from the ground
                 deltaMovement.y = jumpSpeed;
                 spentJumping = 0;
@@ -192,10 +198,22 @@ public class PlayerController : MonoBehaviour
             else
             {
                 deltaMovement.y -= fallingGravity * Time.deltaTime;
+
+                if (startedFalling > 0)
+                {
+                    startedFalling += Time.deltaTime;
+                }
             }
         }
 
+        bool didDrop = controller.ignoreOneWayThisFrame;
+        
         controller.Move(deltaMovement * Time.deltaTime);
+
+        if (!isJumping && grounded && !controller.Grounded && !didDrop)
+        {
+            startedFalling = Time.deltaTime;
+        }
 
         if (isJumping && controller.Grounded)
         {
@@ -222,6 +240,7 @@ public class PlayerController : MonoBehaviour
         if (controller.Grounded)
         {
             deltaMovement.y = 0;
+            startedFalling = 0;
         }
     }
 }

@@ -144,6 +144,7 @@ MonoBehaviour:
   fallingGravity: 60
   jumpGravityStart: 80
   jumpGravityEnd: 58
+  jumpMercyTime: 0.05
   lowerToGroundOnAwake: 1
 --- !u!61 &1080236174093298114
 BoxCollider2D:
