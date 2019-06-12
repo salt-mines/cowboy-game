@@ -297,6 +297,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 821331361}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &981266932 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 111514511065115203, guid: 2e3ea76e3e3a8b34c8af5997874457cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 2326494192461352918}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1073101684
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -552,6 +558,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1958081525 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5148064432557291337, guid: 4d6d098b8d4111f4dbf35097287fbd29,
+    type: 3}
+  m_PrefabInstance: {fileID: 5148064432862252853}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1958081529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958081525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0f51ef50bd125349846645423d81a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatToTrack: {fileID: 981266932}
+  trackingTime: 0.15
 --- !u!1001 &2086833479
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1055,6 +1081,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5148064432557291338, guid: 4d6d098b8d4111f4dbf35097287fbd29,
+        type: 3}
+      propertyPath: orthographic size
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6d098b8d4111f4dbf35097287fbd29, type: 3}
