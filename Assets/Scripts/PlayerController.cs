@@ -144,7 +144,12 @@ public class PlayerController : MonoBehaviour
             spentJumping = jumpSustain;
         }
 
-        if (holdingJump && grounded)
+
+        if (playerInput.Down && holdingJump && grounded)
+        {
+            controller.ignoreOneWayThisFrame = true;
+        }
+        else if (holdingJump && grounded)
         {
             if (hasStoppedHoldingJump)
             {
@@ -183,9 +188,6 @@ public class PlayerController : MonoBehaviour
                 deltaMovement.y -= fallingGravity * Time.deltaTime;
             }
         }
-
-        if (playerInput.Down && grounded)
-            controller.ignoreOneWayThisFrame = true;
 
         controller.Move(deltaMovement * Time.deltaTime);
 
