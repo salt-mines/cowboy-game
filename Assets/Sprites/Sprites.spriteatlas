@@ -31,7 +31,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 3bd8d7b0e97bffe4c875843fd1accaa9, type: 3}
-    totalSpriteSurfaceArea: 53642352
+    totalSpriteSurfaceArea: 52642352
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -49,7 +49,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 1a32b882207804345a6c1186b6ec61b6, type: 3}
   - {fileID: 21300000, guid: 3d96c7c2fc374f048babfa5eab27ec23, type: 3}
   - {fileID: 21300000, guid: 459bc1d28cd01a04385d11e015ab0e6d, type: 3}
-  - {fileID: 21300000, guid: ae08f5231af42f549ac1dd66d9fe881b, type: 3}
   - {fileID: 21300000, guid: 5e5c46635e337954fa7d45d1d0742368, type: 3}
   - {fileID: 21300000, guid: a8c923642ac898a43b519201a4321f76, type: 3}
   - {fileID: 21300000, guid: aa5ed0c4577f69d4d88cd7eae9563209, type: 3}
@@ -103,7 +102,6 @@ SpriteAtlas:
   - tumbleweed6
   - cowboy_walk1
   - cowboy_shoot
-  - pow
   - neocactusaur2
   - bg2
   - bg4
