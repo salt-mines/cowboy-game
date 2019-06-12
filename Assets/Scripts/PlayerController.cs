@@ -138,6 +138,9 @@ public class PlayerController : MonoBehaviour
         currentHorizontalMovement = Mathf.SmoothDamp(currentHorizontalMovement, targetMovement, ref currentAcceleration, speed);
         deltaMovement.x = currentHorizontalMovement * movementSpeed;
 
+        if (animator)
+            animator.SetFloat("Speed", Mathf.Abs(currentHorizontalMovement));
+
         // Prevent continuing jump again if player lets go of the key
         if (!holdingJump && isJumping && spentJumping > jumpMinSustain)
         {
@@ -161,7 +164,10 @@ public class PlayerController : MonoBehaviour
                 currentJumpGravity = jumpGravityStart;
 
                 if (animator)
+                {
                     animator.SetTrigger("Jump");
+                    animator.SetBool("IsJumping", true);
+                }
             }
         }
         else if ((isJumping && holdingJump && spentJumping < jumpSustain) || (isJumping && spentJumping < jumpMinSustain))
@@ -197,7 +203,10 @@ public class PlayerController : MonoBehaviour
             spentJumping = 0;
             isJumping = false;
             if (animator)
+            {
                 animator.SetTrigger("Land");
+                animator.SetBool("IsJumping", false);
+            }
         }
         else
         {
