@@ -1,23 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class EnemyMovement : MonoBehaviour
 {
     public Collider2D enemyPlatform;
-    
+
     public float enemySpeed = 3f;
-    public float enemyJumpHeight = 5f;
 
     private SpriteRenderer spriteRenderer;
     private Collider2D enemyCollider;
+    private Animator animator;
 
     private Vector2 platformLeftCorner;
     private Vector2 platformRightCorner;
 
     private float sinThings;
     private float elapsedTime;
-    private float moveWaitTime = 1f;
+    public float moveWaitTime = 2f;
+
+    private bool isJumping;
+    private bool isPreJumping;
 
     private bool enemyAtLeftCorner = false;
 
@@ -26,17 +27,18 @@ public class EnemyMovement : MonoBehaviour
     {
         enemyCollider = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
 
         platformLeftCorner = new Vector2(enemyPlatform.bounds.min.x + enemyCollider.bounds.extents.x, enemyPlatform.bounds.max.y);
         platformRightCorner = new Vector2(enemyPlatform.bounds.max.x - enemyCollider.bounds.extents.x, enemyPlatform.bounds.max.y);
 
-        transform.position = platformRightCorner;         
+        transform.position = platformRightCorner;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-    
+
     }
 
     // Update is called once per frame
@@ -50,7 +52,7 @@ public class EnemyMovement : MonoBehaviour
 
     void CheckDirection()
     {
-        if(transform.position.x.Equals(platformLeftCorner.x) && !enemyAtLeftCorner)
+        if (transform.position.x.Equals(platformLeftCorner.x) && !enemyAtLeftCorner)
         {
             spriteRenderer.flipX = true;
             enemyAtLeftCorner = true;
@@ -71,8 +73,19 @@ public class EnemyMovement : MonoBehaviour
         if (moveWaitTime > elapsedTime)
         {
             elapsedTime += Time.deltaTime;
+            if(moveWaitTime-elapsedTime < 0.5f && !isPreJumping)
+            {
+                animator.SetTrigger("Prejump");
+                isPreJumping = true;
+            }
             return;
         }
+        isPreJumping = false;
+        if (!isJumping)
+        { 
+            animator.SetTrigger("Jump");
+        }
+        
 
         if (enemyAtLeftCorner)
         {
@@ -81,9 +94,19 @@ public class EnemyMovement : MonoBehaviour
         else
         {
             currentPos = Vector3.MoveTowards(transform.position, platformLeftCorner, enemySpeed * Time.deltaTime);
-        }   
-        
+        }
         currentPos.y = platformLeftCorner.y + Mathf.Sin(sinThings * Mathf.PI);
         transform.position = currentPos;
+
+        if (currentPos.x == platformLeftCorner.x || currentPos.x == platformRightCorner.x)
+        {
+            isJumping = false;
+            animator.SetTrigger("Land");
+        }
+        else
+        {
+            isJumping = true;
+            animator.ResetTrigger("Land");
+        }
     }
 }

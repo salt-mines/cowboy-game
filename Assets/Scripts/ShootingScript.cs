@@ -3,19 +3,30 @@
 public class ShootingScript : MonoBehaviour
 {
     public GameObject bulletPrefab;
+    public GameObject barrel;
+    private SpriteRenderer gunSprite;
 
     private Animator animator;
+
+    private float timeElapsed;
+    public float gunShowtime = 0.7f;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponentInParent<Animator>();
-        
+        gunSprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        timeElapsed += Time.deltaTime;
+
+        if (timeElapsed > gunShowtime)
+        {
+            gunSprite.enabled = false;
+        }
         if (Input.GetButtonDown("Fire1"))
         {
             Shoot();
@@ -57,12 +68,14 @@ public class ShootingScript : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 90);
         }
 
-        GameObject firedBullet = Instantiate(bulletPrefab, gameObject.transform.position, gameObject.transform.rotation);
+        GameObject firedBullet = Instantiate(bulletPrefab, barrel.transform.position, gameObject.transform.rotation);
         firedBullet.layer = 11;
 
         if (animator)
         {
+            gunSprite.enabled = true;
             animator.SetTrigger("Shoot");
+            timeElapsed = 0;
         }
     }
 }
