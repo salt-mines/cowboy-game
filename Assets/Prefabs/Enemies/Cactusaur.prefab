@@ -93,7 +93,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.8}
@@ -143,9 +143,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPlatform: {fileID: 0}
+  powPrefab: {fileID: 4896594642588702175, guid: 37f8ede169a0cb24bb5e75db2f3f0198,
+    type: 3}
   enemySpeed: 3
   moveWaitTime: 2
---- !u!95 &-6742364110454716526
+  gameManager: {fileID: 0}
+--- !u!95 &
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0

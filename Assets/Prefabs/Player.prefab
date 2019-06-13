@@ -370,3 +370,4 @@ MonoBehaviour:
     type: 3}
   barrel: {fileID: 2764681677527787056}
   gunShowtime: 0.2
+  rateOfFire: 0.8
