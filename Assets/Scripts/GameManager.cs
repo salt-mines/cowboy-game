@@ -16,13 +16,13 @@ public class GameManager : MonoBehaviour
     private float playerLastHit;
 
     public GameObject playerHurtPrefab;
-    public GameObject playerSpawnpoint;
 
     // Menus
     public Canvas canvas;
     public EventSystem eventSystem;
 
     public GameObject pauseMenuPrefab;
+    public GameObject levelEndMenuPrefab;
     public GameObject gameOverMenuPrefab;
 
     private bool isGameOver = false;
@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
 
         if (currentLives == 0)
         {
-            GameOver();
+            GameOver(false);
         }
     }
 
@@ -116,25 +116,35 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void LoadNextLevel()
+    public void LoadNextLevel()
     {
         if (currentLevel >= levels.Length - 1)
-        {
             currentLevel = 0;
-        }
         else
             currentLevel += 1;
 
         UnloadLevel();
 
         SceneManager.LoadSceneAsync(levels[currentLevel], LoadSceneMode.Additive);
+
+        Resume();
     }
 
-    void GameOver()
+    public void ReachedLevelEnd()
+    {
+        Pause();
+
+        if (currentLevel >= levels.Length - 1)
+            GameOver(true);
+        else
+            OpenLevelEndMenu();
+    }
+
+    void GameOver(bool won)
     {
         isGameOver = true;
         Pause();
-        OpenGameOverMenu();
+        OpenGameOverMenu(won);
     }
 
     #region UI Methods
@@ -149,13 +159,26 @@ public class GameManager : MonoBehaviour
         eventSystem.SetSelectedGameObject(menu.transform.GetChild(0).gameObject);
     }
 
-    public void OpenGameOverMenu()
+    public void OpenLevelEndMenu()
+    {
+        GameObject menu = Instantiate(levelEndMenuPrefab, canvas.gameObject.transform);
+        var goMenu = menu.GetComponent<LevelEndMenu>();
+        goMenu.gameManager = this;
+        eventSystem.SetSelectedGameObject(menu.transform.GetChild(0).gameObject);
+    }
+
+    public void OpenGameOverMenu(bool won)
     {
         if (!isGameOver) return;
 
         GameObject menu = Instantiate(gameOverMenuPrefab, canvas.gameObject.transform);
-        menu.GetComponent<GameOverMenu>().gameManager = this;
+        var goMenu = menu.GetComponent<GameOverMenu>();
+        goMenu.gameManager = this;
         eventSystem.SetSelectedGameObject(menu.transform.GetChild(0).gameObject);
+        if (won)
+            goMenu.Won();
+        else
+            goMenu.Lost();
     }
     #endregion
 }

@@ -188,10 +188,11 @@ MonoBehaviour:
   playerLives: 3
   playerHurtPrefab: {fileID: 4739164243848393312, guid: f6770f0c646a6734ca5594d39dcfaab9,
     type: 3}
-  playerSpawnpoint: {fileID: 0}
   canvas: {fileID: 182722593}
   eventSystem: {fileID: 274079436}
   pauseMenuPrefab: {fileID: 8813333537259311605, guid: e4a1fdad1975eab4cb80948de7871127,
+    type: 3}
+  levelEndMenuPrefab: {fileID: 8813333537259311605, guid: a59835e0b3cbf6943860a6d39946fd91,
     type: 3}
   gameOverMenuPrefab: {fileID: 8813333537259311605, guid: 06db0661d1bfbb647ae646309c4d0424,
     type: 3}
