@@ -1,13 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
     public float BulletSpeed = 10f;
 
     public GameObject powPrefab;
-    public GameObject oofPrefab;
+
+    private GameManager gameManager;
+
+    void Start()
+    {
+        gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+    }
 
     void FixedUpdate()
     {
@@ -18,9 +22,8 @@ public class BulletScript : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player" && gameObject.layer == 12)
         {
-            onPlayerDeath(collision.gameObject.transform);
+            gameManager.OnPlayerHit(collision.gameObject, gameObject);
             Destroy(gameObject);
-            Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "Enemy" && gameObject.layer == 11)
         {
@@ -33,11 +36,6 @@ public class BulletScript : MonoBehaviour
     private void onDeath(Transform transform)
     {
         Instantiate(powPrefab, transform.position, transform.rotation);
-    }
-
-    private void onPlayerDeath(Transform transform)
-    {
-        Instantiate(oofPrefab, transform.position, transform.rotation);
     }
 
     private void OnBecameInvisible()

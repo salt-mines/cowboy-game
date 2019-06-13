@@ -181,31 +181,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c831514e9f2932b4fb13d2869b708612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levels:
+  - Level 01
+  playerHitImmunityTime: 1
   playerLives: 3
+  playerHurtPrefab: {fileID: 4739164243848393312, guid: f6770f0c646a6734ca5594d39dcfaab9,
+    type: 3}
   playerSpawnpoint: {fileID: 0}
   canvas: {fileID: 182722593}
   eventSystem: {fileID: 274079436}
   pauseMenuPrefab: {fileID: 8813333537259311605, guid: e4a1fdad1975eab4cb80948de7871127,
     type: 3}
-  gameOverMenuPrefab: {fileID: 0}
---- !u!1 &2136762752 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 819303082512458143, guid: 2d527c8c74d9246468cf3a6c318a707d,
+  gameOverMenuPrefab: {fileID: 8813333537259311605, guid: 06db0661d1bfbb647ae646309c4d0424,
     type: 3}
-  m_PrefabInstance: {fileID: 4879180371756147082}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2136762753
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2136762752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a8b9f4eb6b69b44f968d0884b12355a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4879180371756147082
 PrefabInstance:
   m_ObjectHideFlags: 0

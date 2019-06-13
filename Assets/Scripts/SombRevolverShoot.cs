@@ -5,7 +5,6 @@ using UnityEngine;
 public class SombRevolverShoot : MonoBehaviour
 {
     public GameObject barrel;
-    public GameObject oofPrefab;
     public GameObject bulletPrefab;
 
     public float shootDelay = 3f;
@@ -39,9 +38,7 @@ public class SombRevolverShoot : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            gameManager.playerLives--;
-            Destroy(collision.gameObject);
-            Instantiate(oofPrefab, transform.position, transform.rotation);
+            gameManager.OnPlayerHit(collision.gameObject, gameObject);
         }
     }
 }

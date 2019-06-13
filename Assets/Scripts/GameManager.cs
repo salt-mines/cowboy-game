@@ -4,9 +4,18 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    // Level system
+    public string[] levels;
+    private int currentLevel = 0;
+
+    // Player health
+    public float playerHitImmunityTime = 1f;
     public int playerLives = 3;
     private int currentLives;
 
+    private float playerLastHit;
+
+    public GameObject playerHurtPrefab;
     public GameObject playerSpawnpoint;
 
     // Menus
@@ -21,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        currentLives = playerLives;
+        Restart();
     }
 
     void Awake()
@@ -35,39 +44,30 @@ public class GameManager : MonoBehaviour
         }
 
         Time.timeScale = 1;
-
         GameObject.Find("Lives").GetComponent<LifeDisplay>().SetLives(currentLives);
     }
 
-    public void OnPlayerHit(GameObject player)
+    public void OnPlayerHit(GameObject player, GameObject attacker)
     {
+        if (Time.time - playerLastHit <= playerHitImmunityTime)
+            return;
+
+        playerLastHit = Time.time;
         currentLives--;
 
-        if (currentLives < 0)
+        if (playerHurtPrefab)
         {
+            Instantiate(playerHurtPrefab, player.transform.position, Quaternion.identity);
+        }
 
+        if (currentLives == 0)
+        {
+            GameOver();
         }
         else
         {
             GameObject.Find("Lives").GetComponent<LifeDisplay>().SetLives(currentLives);
         }
-    }
-
-    void GameOver()
-    {
-
-    }
-
-    #region UI Methods
-    public void OpenPauseMenu()
-    {
-        if (paused) return;
-
-        Pause();
-
-        GameObject menu = Instantiate(pauseMenuPrefab, canvas.gameObject.transform);
-        menu.GetComponent<PauseMenu>().gameManager = this;
-        eventSystem.SetSelectedGameObject(menu.transform.GetChild(0).gameObject);
     }
 
     public void Pause()
@@ -90,7 +90,74 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        paused = false;
+        isGameOver = false;
+        Time.timeScale = 1;
+        currentLives = playerLives;
+
+        GameObject.Find("Lives").GetComponent<LifeDisplay>().SetLives(currentLives);
+
+        UnloadLevel();
+
+        SceneManager.LoadSceneAsync(levels[0], LoadSceneMode.Additive);
+    }
+
+    void UnloadLevel()
+    {
+        var count = SceneManager.sceneCount;
+        if (count > 1)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                var scene = SceneManager.GetSceneAt(i);
+                if (scene.buildIndex != 0)
+                {
+                    SceneManager.UnloadSceneAsync(scene);
+                }
+            }
+        }
+    }
+
+    void LoadNextLevel()
+    {
+        if (currentLevel >= levels.Length - 1)
+        {
+            currentLevel = 0;
+        }
+        else
+            currentLevel += 1;
+
+        UnloadLevel();
+
+        SceneManager.LoadSceneAsync(levels[currentLevel], LoadSceneMode.Additive);
+    }
+
+    void GameOver()
+    {
+        isGameOver = true;
+        Pause();
+        OpenGameOverMenu();
+    }
+
+    #region UI Methods
+    public void OpenPauseMenu()
+    {
+        if (paused) return;
+
+        Pause();
+
+        GameObject menu = Instantiate(pauseMenuPrefab, canvas.gameObject.transform);
+        menu.GetComponent<PauseMenu>().gameManager = this;
+        eventSystem.SetSelectedGameObject(menu.transform.GetChild(0).gameObject);
+    }
+
+    public void OpenGameOverMenu()
+    {
+        if (!isGameOver) return;
+
+        GameObject menu = Instantiate(gameOverMenuPrefab, canvas.gameObject.transform);
+        menu.GetComponent<GameOverMenu>().gameManager = this;
+        eventSystem.SetSelectedGameObject(menu.transform.GetChild(0).gameObject);
     }
     #endregion
 }
