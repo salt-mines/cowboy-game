@@ -12,12 +12,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cactus (Alt)
       objectReference: {fileID: 0}
-    - target: {fileID: 3201283672191429334, guid: 46a332865233ad448b3be00a154a4824,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 29c4acc4c1594b94d95733b0dc036f77,
-        type: 3}
     - target: {fileID: 9162043143806294759, guid: 46a332865233ad448b3be00a154a4824,
         type: 3}
       propertyPath: m_RootOrder
@@ -37,6 +31,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3201283672191429334, guid: 46a332865233ad448b3be00a154a4824,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 29c4acc4c1594b94d95733b0dc036f77,
+        type: 3}
+    - target: {fileID: 3201283672191429334, guid: 46a332865233ad448b3be00a154a4824,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1949209201
+      objectReference: {fileID: 0}
+    - target: {fileID: 3201283672191429334, guid: 46a332865233ad448b3be00a154a4824,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: -2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46a332865233ad448b3be00a154a4824, type: 3}

@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flat Platform (Alt)
       objectReference: {fileID: 0}
+    - target: {fileID: 2369887459559261766, guid: 060ddb1aa221eb74ca78bc945ce4f1e3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 9211440232607228842, guid: 060ddb1aa221eb74ca78bc945ce4f1e3,
         type: 3}
       propertyPath: m_RootOrder
