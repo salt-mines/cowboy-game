@@ -62,9 +62,18 @@ public class GameManager : MonoBehaviour
 
         GameObject.Find("Lives").GetComponent<LifeDisplay>().SetLives(currentLives);
 
+        var sounds = player.GetComponent<PlayerSounds>();
         if (currentLives == 0)
         {
+            if (sounds)
+                sounds.PlayDeath();
+
             GameOver(false);
+        }
+        else
+        {
+            if (sounds)
+                sounds.PlayHurt();
         }
     }
 
@@ -91,6 +100,7 @@ public class GameManager : MonoBehaviour
         paused = false;
         isGameOver = false;
         Time.timeScale = 1;
+        currentLevel = 0;
         currentLives = playerLives;
 
         GameObject.Find("Lives").GetComponent<LifeDisplay>().SetLives(currentLives);

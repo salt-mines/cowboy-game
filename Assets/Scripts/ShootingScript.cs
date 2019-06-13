@@ -7,6 +7,7 @@ public class ShootingScript : MonoBehaviour
     private SpriteRenderer gunSprite;
 
     private Animator animator;
+    private PlayerSounds playerSounds;
 
     private float timeElapsed;
     public float gunShowtime = 0.7f;
@@ -18,6 +19,7 @@ public class ShootingScript : MonoBehaviour
     {
         animator = GetComponentInParent<Animator>();
         gunSprite = GetComponentInChildren<SpriteRenderer>();
+        playerSounds = GetComponentInParent<PlayerSounds>();
     }
 
     // Update is called once per frame
@@ -81,6 +83,11 @@ public class ShootingScript : MonoBehaviour
             gunSprite.enabled = true;
             animator.SetTrigger("Shoot");
             timeElapsed = 0;
+        }
+
+        if (playerSounds)
+        {
+            playerSounds.PlayShoot();
         }
     }
 }
