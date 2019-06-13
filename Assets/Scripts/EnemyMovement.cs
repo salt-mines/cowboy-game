@@ -22,6 +22,8 @@ public class EnemyMovement : MonoBehaviour
 
     private bool enemyAtLeftCorner = false;
 
+    public GameManager gameManager;
+
 
     private void Awake()
     {
@@ -107,6 +109,14 @@ public class EnemyMovement : MonoBehaviour
         {
             isJumping = true;
             animator.ResetTrigger("Land");
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            gameManager.playerLives--;
+            Destroy(collision.gameObject);
         }
     }
 }

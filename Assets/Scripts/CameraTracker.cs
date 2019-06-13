@@ -17,6 +17,7 @@ public class CameraTracker : MonoBehaviour
 
     void LateUpdate()
     {
+        if (!whatToTrack) return;
         Vector3 newPos = transform.position;
 
         var posOnCamera = camera.WorldToViewportPoint(whatToTrack.position);

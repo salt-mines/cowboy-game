@@ -6,6 +6,8 @@ public class BulletScript : MonoBehaviour
 {
     public float BulletSpeed = 10f;
 
+    public GameObject powPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,15 +31,20 @@ public class BulletScript : MonoBehaviour
         if(collision.gameObject.tag == "Player" && gameObject.layer == 12)
         {
             Destroy(gameObject);
-            Destroy(collision.gameObject);
-            Debug.Log("Player died!");
+            Destroy(collision.gameObject.transform);
         }
         if (collision.gameObject.tag == "Enemy" && gameObject.layer == 11)
         {
+            onDeath(collision.gameObject.transform);
             Destroy(gameObject);
             Destroy(collision.gameObject);
-            Debug.Log("Enemy killed!");
         }
+    }
+
+    private void onDeath(Transform transform)
+    {
+        Instantiate(powPrefab, transform.position, transform.rotation);
+
     }
 
     private void OnBecameInvisible()

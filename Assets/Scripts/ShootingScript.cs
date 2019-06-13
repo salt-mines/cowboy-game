@@ -11,6 +11,8 @@ public class ShootingScript : MonoBehaviour
     private float timeElapsed;
     public float gunShowtime = 0.7f;
 
+    public float rateOfFire = 0.8f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,9 +29,12 @@ public class ShootingScript : MonoBehaviour
         {
             gunSprite.enabled = false;
         }
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1"))
         {
-            Shoot();
+            if (timeElapsed > rateOfFire)
+            {
+                Shoot();
+            }
         }
     }
 
