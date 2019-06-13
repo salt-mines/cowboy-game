@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3105738793820406955}
   - component: {fileID: 3105738793820406954}
   - component: {fileID: 3105738793820406957}
-  - component: {fileID: 3105738793820406953}
   - component: {fileID: 3105738793820406952}
+  - component: {fileID: 4127358153815118759}
   m_Layer: 0
   m_Name: Tumbleweed
   m_TagString: Enemy
@@ -101,32 +101,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!61 &3105738793820406953
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3105738793820406956}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.45641422}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1.4285715, y: 1.4285715}
-    newSize: {x: 10, y: 10}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.9, y: 0.9}
-  m_EdgeRadius: 0
 --- !u!114 &3105738793820406952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +115,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPlatform: {fileID: 0}
   speed: 6
-  gameManager: {fileID: 0}
-  oofPrefab: {fileID: 4739164243848393312, guid: f6770f0c646a6734ca5594d39dcfaab9,
-    type: 3}
+--- !u!70 &4127358153815118759
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3105738793820406956}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.45}
+  m_Size: {x: 0.9, y: 0.9}
+  m_Direction: 0
