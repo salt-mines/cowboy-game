@@ -144,7 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPlatform: {fileID: 0}
   enemySpeed: 3
-  enemyJumpHeight: 5
+  moveWaitTime: 2
 --- !u!95 &-6742364110454716526
 Animator:
   serializedVersion: 3

@@ -15,7 +15,7 @@ SpriteAtlas:
       compressionQuality: 50
       maxTextureSize: 2048
       textureCompression: 0
-      filterMode: 0
+      filterMode: 1
       generateMipMaps: 0
       readable: 0
       crunchedCompression: 0
@@ -31,7 +31,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 3bd8d7b0e97bffe4c875843fd1accaa9, type: 3}
-    totalSpriteSurfaceArea: 52642352
+    totalSpriteSurfaceArea: 57615472
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -42,6 +42,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 829a345163ae54841aa493759d00cb2a, type: 3}
   - {fileID: 21300000, guid: 1f27ec51d67e5c44dbae6e6093470158, type: 3}
   - {fileID: 21300000, guid: 8941cb61ce2117e4cb87cfa32320d633, type: 3}
+  - {fileID: 21300000, guid: b98e21919c8c03840bdf68deaf5aa869, type: 3}
   - {fileID: 21300000, guid: 5636dc9135e001140a9f85a697e2873f, type: 3}
   - {fileID: 21300000, guid: 149ae9c130fe5114999173f08e517c47, type: 3}
   - {fileID: 21300000, guid: 54ab01e17df49b84dbfed39052ecb8f1, type: 3}
@@ -50,11 +51,12 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 3d96c7c2fc374f048babfa5eab27ec23, type: 3}
   - {fileID: 21300000, guid: 459bc1d28cd01a04385d11e015ab0e6d, type: 3}
   - {fileID: 21300000, guid: 5e5c46635e337954fa7d45d1d0742368, type: 3}
-  - {fileID: 21300000, guid: a8c923642ac898a43b519201a4321f76, type: 3}
-  - {fileID: 21300000, guid: aa5ed0c4577f69d4d88cd7eae9563209, type: 3}
+  - {fileID: 21300000, guid: ee72f844af105f8429f854f3ceba9139, type: 3}
+  - {fileID: 21300000, guid: 29c4acc4c1594b94d95733b0dc036f77, type: 3}
   - {fileID: 21300000, guid: 954c1be4fdfa69a48ae550fcb0eee5da, type: 3}
   - {fileID: 21300000, guid: 51507a05fc67e5b4b9765299c6b1f538, type: 3}
   - {fileID: 21300000, guid: fff545450ede0444e95783a2da0d7624, type: 3}
+  - {fileID: 21300000, guid: 4451f375bd693e244964ff1da6224c0c, type: 3}
   - {fileID: 21300000, guid: 0b33cec560cc5944eb9e1f16f6013785, type: 3}
   - {fileID: 21300000, guid: 26b762d58dff5164b83343bcdb845261, type: 3}
   - {fileID: 21300000, guid: c1473c062b4977f41bdc48121a905df1, type: 3}
@@ -67,15 +69,15 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 1e41ef878d70b484787bce7eb636bcc3, type: 3}
   - {fileID: 21300000, guid: 5995bb68544d0124eb25f005670f2506, type: 3}
   - {fileID: 21300000, guid: c7bd61887c081d74e9d9d33b6c3284bb, type: 3}
+  - {fileID: 21300000, guid: cb3e06988d8d69c4eb3da9317c0657f3, type: 3}
   - {fileID: 21300000, guid: ceeabcd87f48f3a4ba20c84e977c1b98, type: 3}
-  - {fileID: 21300000, guid: 64b6e11904b4afa4eab68845820a813e, type: 3}
+  - {fileID: 21300000, guid: f5d9cbe8cc30468499eed4b91596d962, type: 3}
   - {fileID: 21300000, guid: 3295c7394aeebe94db52a15e2f3258e3, type: 3}
   - {fileID: 21300000, guid: e1e61379b574ce3448727ac086db0027, type: 3}
   - {fileID: 21300000, guid: 7fe4173abd27dee47a614ade08cd4b68, type: 3}
   - {fileID: 21300000, guid: ec76b55a48bc34c48a729c26167d0ecb, type: 3}
   - {fileID: 21300000, guid: 397fd79a8fc092f4499d38585aaaf3fe, type: 3}
   - {fileID: 21300000, guid: 700a80cb4f54a41438da940fe10ec43b, type: 3}
-  - {fileID: 21300000, guid: c487a60c0b607ef4b864fe287f05645a, type: 3}
   - {fileID: 21300000, guid: f173f15c8be2d1b4da1f57b9ee122b33, type: 3}
   - {fileID: 21300000, guid: 667cb16c3f7643b49a671cd53a11eac3, type: 3}
   - {fileID: 21300000, guid: 595e57fd9fb5f4f4daa61079e5f8b08c, type: 3}
@@ -95,6 +97,7 @@ SpriteAtlas:
   - cowboy_walk2
   - tires1
   - saltmines_logo_white
+  - newBG1
   - tumbleweed8
   - pow1
   - Platform
@@ -103,11 +106,12 @@ SpriteAtlas:
   - cowboy_walk1
   - cowboy_shoot
   - neocactusaur2
-  - bg2
-  - bg4
+  - saloon
+  - cactus2B
   - tumbleweed12
   - tumbleweed1
   - cowboy_jump_shoot
+  - flatplatform1
   - neocactusaur_bend4
   - rock1
   - metalcactus
@@ -120,15 +124,15 @@ SpriteAtlas:
   - cowboy_midair
   - cowboy_idle
   - tumbleweed10
+  - newBG2
   - neocactusaur_jump2
-  - bg1
+  - flatplatform2
   - gun2
   - bullet
   - crate2
   - neocactusaur_bend3
   - crate3
   - tumbleweed3
-  - bg3
   - crate4
   - tumbleweed11
   - neocactusaur_jump3
