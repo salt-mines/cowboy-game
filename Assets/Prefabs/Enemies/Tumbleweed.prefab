@@ -142,3 +142,5 @@ MonoBehaviour:
   enemyPlatform: {fileID: 0}
   speed: 6
   gameManager: {fileID: 0}
+  oofPrefab: {fileID: 4739164243848393312, guid: f6770f0c646a6734ca5594d39dcfaab9,
+    type: 3}

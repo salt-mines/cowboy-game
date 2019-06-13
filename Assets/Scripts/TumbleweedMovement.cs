@@ -17,7 +17,9 @@ public class TumbleweedMovement : MonoBehaviour
 
     private bool enemyAtLeftCorner = false;
 
-    public GameManager gameManager; 
+    public GameManager gameManager;
+
+    public GameObject oofPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -68,6 +70,8 @@ public class TumbleweedMovement : MonoBehaviour
         {
             gameManager.playerLives--;
             Destroy(collision.gameObject);
+            Instantiate(oofPrefab, transform.position, transform.rotation);
         }
     }
 }
+
