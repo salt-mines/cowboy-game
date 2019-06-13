@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Renderer))]
 public class BulletScript : MonoBehaviour
 {
     public float BulletSpeed = 10f;
@@ -16,6 +17,9 @@ public class BulletScript : MonoBehaviour
     void FixedUpdate()
     {
         transform.position += transform.up * BulletSpeed * Time.deltaTime;
+
+        if (!GetComponent<Renderer>().isVisible)
+            Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
