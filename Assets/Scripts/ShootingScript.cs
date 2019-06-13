@@ -8,6 +8,7 @@ public class ShootingScript : MonoBehaviour
 
     private Animator animator;
     private PlayerSounds playerSounds;
+    private PlayerInput playerInput;
 
     private float timeElapsed;
     public float gunShowtime = 0.7f;
@@ -19,6 +20,7 @@ public class ShootingScript : MonoBehaviour
     {
         animator = GetComponentInParent<Animator>();
         gunSprite = GetComponentInChildren<SpriteRenderer>();
+        playerInput = GetComponentInParent<PlayerInput>();
         playerSounds = GetComponentInParent<PlayerSounds>();
     }
 
@@ -42,35 +44,35 @@ public class ShootingScript : MonoBehaviour
 
     void Shoot()
     {
-        if (Input.GetAxisRaw("Vertical") == 1 && Input.GetAxisRaw("Horizontal") == 0)
+        if (Input.GetAxisRaw("Vertical") > 0 && Input.GetAxisRaw("Horizontal") == 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
-        else if (Input.GetAxisRaw("Vertical") == -1 && Input.GetAxisRaw("Horizontal") == 0)
+        else if (Input.GetAxisRaw("Vertical") < 0 && Input.GetAxisRaw("Horizontal") == 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, -180);
         }
-        else if (Input.GetAxisRaw("Vertical") == 1 && Input.GetAxisRaw("Horizontal") == 1)
+        else if (Input.GetAxisRaw("Vertical") > 0 && Input.GetAxisRaw("Horizontal") > 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, -45);
         }
-        else if (Input.GetAxisRaw("Vertical") == -1 && Input.GetAxisRaw("Horizontal") == 1)
+        else if (Input.GetAxisRaw("Vertical") < 0 && Input.GetAxisRaw("Horizontal") > 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, -135);
         }
-        else if (transform.parent.localScale.x == 1 && Input.GetAxisRaw("Vertical") == 0 && (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == 0))
+        else if (transform.parent.localScale.x == 1 && Input.GetAxisRaw("Vertical") == 0 && (Input.GetAxisRaw("Horizontal") > 0 || Input.GetAxisRaw("Horizontal") == 0))
         {
             transform.rotation = Quaternion.Euler(0, 0, -90);
         }
-        else if (Input.GetAxisRaw("Vertical") == 1 && Input.GetAxisRaw("Horizontal") == -1)
+        else if (Input.GetAxisRaw("Vertical") > 0 && Input.GetAxisRaw("Horizontal") < 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, 45);
         }
-        else if (Input.GetAxisRaw("Vertical") == -1 && Input.GetAxisRaw("Horizontal") == -1)
+        else if (Input.GetAxisRaw("Vertical") < 0 && Input.GetAxisRaw("Horizontal") < 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, 135);
         }
-        else if (transform.parent.localScale.x == -1 && Input.GetAxisRaw("Vertical") == 0 && (Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Horizontal") == 0))
+        else if (transform.parent.localScale.x == -1 && Input.GetAxisRaw("Vertical") == 0 && (Input.GetAxisRaw("Horizontal") < 0 || Input.GetAxisRaw("Horizontal") == 0))
         {
             transform.rotation = Quaternion.Euler(0, 0, 90);
         }
