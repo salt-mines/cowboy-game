@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3054872143030943616
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 934157938143605983, guid: bc7c8dd74b5ecb54ba5dd31f124ba790,
+        type: 3}
+      propertyPath: m_Name
+      value: Crate (Splats)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918032761769457548, guid: bc7c8dd74b5ecb54ba5dd31f124ba790,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918032761769457548, guid: bc7c8dd74b5ecb54ba5dd31f124ba790,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918032761769457548, guid: bc7c8dd74b5ecb54ba5dd31f124ba790,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918032761769457548, guid: bc7c8dd74b5ecb54ba5dd31f124ba790,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011033899115528996, guid: bc7c8dd74b5ecb54ba5dd31f124ba790,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f173f15c8be2d1b4da1f57b9ee122b33,
+        type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bc7c8dd74b5ecb54ba5dd31f124ba790, type: 3}

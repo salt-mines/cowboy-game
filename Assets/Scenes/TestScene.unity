@@ -1075,21 +1075,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5777622219184096308, guid: 2e3ea76e3e3a8b34c8af5997874457cc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5777622219184096308, guid: 2e3ea76e3e3a8b34c8af5997874457cc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5777622219184096308, guid: 2e3ea76e3e3a8b34c8af5997874457cc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -90
-      objectReference: {fileID: 0}
     - target: {fileID: 2326494193156314194, guid: 2e3ea76e3e3a8b34c8af5997874457cc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1124,6 +1109,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5777622219184096308, guid: 2e3ea76e3e3a8b34c8af5997874457cc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5777622219184096308, guid: 2e3ea76e3e3a8b34c8af5997874457cc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5777622219184096308, guid: 2e3ea76e3e3a8b34c8af5997874457cc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 3672581258752555220, guid: 2e3ea76e3e3a8b34c8af5997874457cc,
         type: 3}
@@ -1199,11 +1199,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3850139799045970123, guid: 4d6d098b8d4111f4dbf35097287fbd29,
-        type: 3}
-      propertyPath: whatToTrack
-      value: 
-      objectReference: {fileID: 985984656}
     - target: {fileID: 5148064432557291337, guid: 4d6d098b8d4111f4dbf35097287fbd29,
         type: 3}
       propertyPath: m_Name
@@ -1214,6 +1209,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3850139799045970123, guid: 4d6d098b8d4111f4dbf35097287fbd29,
+        type: 3}
+      propertyPath: whatToTrack
+      value: 
+      objectReference: {fileID: 985984656}
     - target: {fileID: 5148064432557291445, guid: 4d6d098b8d4111f4dbf35097287fbd29,
         type: 3}
       propertyPath: m_LocalPosition.x
