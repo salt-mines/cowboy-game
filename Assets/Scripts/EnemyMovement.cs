@@ -26,7 +26,7 @@ public class EnemyMovement : MonoBehaviour
     private GameManager gameManager;
 
 
-    private void Awake()
+    private void Start()
     {
         enemyCollider = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
