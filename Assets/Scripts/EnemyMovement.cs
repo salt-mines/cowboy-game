@@ -22,6 +22,8 @@ public class EnemyMovement : MonoBehaviour
 
     private bool enemyAtLeftCorner = false;
 
+    public GameObject oofPrefab;
+
     public GameManager gameManager;
 
 
@@ -117,6 +119,7 @@ public class EnemyMovement : MonoBehaviour
         {
             gameManager.playerLives--;
             Destroy(collision.gameObject);
+            Instantiate(oofPrefab, transform.position, transform.rotation);
         }
     }
 }
