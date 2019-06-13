@@ -182,7 +182,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
-  - Level 01
   - Level 02
   playerHitImmunityTime: 1
   playerLives: 3
