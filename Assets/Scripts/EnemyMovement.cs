@@ -18,6 +18,8 @@ public class EnemyMovement : MonoBehaviour
     private float elapsedTime;
     public float moveWaitTime = 2f;
 
+    public bool startFromRight = true;
+
     private bool isJumping;
     private bool isPreJumping;
 
@@ -36,7 +38,9 @@ public class EnemyMovement : MonoBehaviour
         platformLeftCorner = new Vector2(enemyPlatform.bounds.min.x + enemyCollider.bounds.extents.x, enemyPlatform.bounds.max.y);
         platformRightCorner = new Vector2(enemyPlatform.bounds.max.x - enemyCollider.bounds.extents.x, enemyPlatform.bounds.max.y);
 
-        transform.position = platformRightCorner;
+        transform.position = startFromRight ? platformRightCorner : platformLeftCorner;
+        enemyAtLeftCorner = !startFromRight;
+        spriteRenderer.flipX = !startFromRight;
     }
 
     // Update is called once per frame

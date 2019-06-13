@@ -635,6 +635,11 @@ PrefabInstance:
       propertyPath: enemyPlatform
       value: 
       objectReference: {fileID: 1063399118}
+    - target: {fileID: 9074632169627562191, guid: fb5c88f98d9aee6478d23007911a875b,
+        type: 3}
+      propertyPath: startFromRight
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4692520871880332918, guid: fb5c88f98d9aee6478d23007911a875b,
         type: 3}
       propertyPath: m_LocalPosition.x
