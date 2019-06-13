@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public int playerLives = 3;
+    private int currentLives;
 
     public GameObject playerSpawnpoint;
 
@@ -18,10 +19,9 @@ public class GameManager : MonoBehaviour
     private bool isGameOver = false;
     private bool paused = false;
 
-    // Start is called before the first frame update
     void Start()
     {
-        Time.timeScale = 1;
+        currentLives = playerLives;
     }
 
     void Awake()
@@ -31,9 +31,34 @@ public class GameManager : MonoBehaviour
         if (gm.Length > 1)
         {
             Destroy(gameObject);
+            return;
+        }
+
+        Time.timeScale = 1;
+
+        GameObject.Find("Lives").GetComponent<LifeDisplay>().SetLives(currentLives);
+    }
+
+    public void OnPlayerHit(GameObject player)
+    {
+        currentLives--;
+
+        if (currentLives < 0)
+        {
+
+        }
+        else
+        {
+            GameObject.Find("Lives").GetComponent<LifeDisplay>().SetLives(currentLives);
         }
     }
 
+    void GameOver()
+    {
+
+    }
+
+    #region UI Methods
     public void OpenPauseMenu()
     {
         if (paused) return;
@@ -67,4 +92,5 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+    #endregion
 }
