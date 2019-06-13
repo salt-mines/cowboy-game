@@ -17,7 +17,7 @@ public class TumbleweedMovement : MonoBehaviour
 
     private bool enemyAtLeftCorner = false;
 
-    public GameManager gameManager;
+    private GameManager gameManager;
 
     public GameObject oofPrefab;
 
@@ -26,6 +26,7 @@ public class TumbleweedMovement : MonoBehaviour
     {
         enemyCollider = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
 
         platformLeftCorner = new Vector2(enemyPlatform.bounds.min.x + enemyCollider.bounds.extents.x, enemyPlatform.bounds.max.y);
         platformRightCorner = new Vector2(enemyPlatform.bounds.max.x - enemyCollider.bounds.extents.x, enemyPlatform.bounds.max.y);

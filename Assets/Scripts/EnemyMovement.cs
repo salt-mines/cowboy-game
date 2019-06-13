@@ -24,7 +24,7 @@ public class EnemyMovement : MonoBehaviour
 
     public GameObject oofPrefab;
 
-    public GameManager gameManager;
+    private GameManager gameManager;
 
 
     private void Awake()
@@ -32,6 +32,7 @@ public class EnemyMovement : MonoBehaviour
         enemyCollider = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
 
         platformLeftCorner = new Vector2(enemyPlatform.bounds.min.x + enemyCollider.bounds.extents.x, enemyPlatform.bounds.max.y);
         platformRightCorner = new Vector2(enemyPlatform.bounds.max.x - enemyCollider.bounds.extents.x, enemyPlatform.bounds.max.y);
