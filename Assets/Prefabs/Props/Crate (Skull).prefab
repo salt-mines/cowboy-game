@@ -38,6 +38,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 7fe4173abd27dee47a614ade08cd4b68,
         type: 3}
+    - target: {fileID: 9011033899115528996, guid: bc7c8dd74b5ecb54ba5dd31f124ba790,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 2015177721
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011033899115528996, guid: bc7c8dd74b5ecb54ba5dd31f124ba790,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7415475896201994998, guid: bc7c8dd74b5ecb54ba5dd31f124ba790,
         type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
