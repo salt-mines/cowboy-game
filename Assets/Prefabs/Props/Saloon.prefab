@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3773824994487354060}
   - component: {fileID: 1951593466551412506}
   - component: {fileID: 8002673204245409731}
+  - component: {fileID: 3338823102807199794}
   m_Layer: 0
   m_Name: Saloon
   m_TagString: Untagged
@@ -90,7 +91,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.3}
@@ -106,3 +107,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6, y: 0.6}
   m_EdgeRadius: 0
+--- !u!114 &3338823102807199794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5933817951368225785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b6519bc8a4cecb49b8e4fe8eb897331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
