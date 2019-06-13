@@ -74,7 +74,7 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
+  m_DrawMode: 2
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -101,7 +101,7 @@ BoxCollider2D:
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
@@ -119,5 +119,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d51978007daf9241a9f81f4be1590fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oofPrefab: {fileID: 4739164243848393312, guid: f6770f0c646a6734ca5594d39dcfaab9,
-    type: 3}
+  playerRespawnPosition: {fileID: 0}

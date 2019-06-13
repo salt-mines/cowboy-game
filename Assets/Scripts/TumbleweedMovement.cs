@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TumbleweedMovement : MonoBehaviour
 {
@@ -18,8 +16,6 @@ public class TumbleweedMovement : MonoBehaviour
     private bool enemyAtLeftCorner = false;
 
     private GameManager gameManager;
-
-    public GameObject oofPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -69,9 +65,7 @@ public class TumbleweedMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            gameManager.playerLives--;
-            Destroy(collision.gameObject);
-            Instantiate(oofPrefab, transform.position, transform.rotation);
+            gameManager.OnPlayerHit(collision.gameObject, gameObject);
         }
     }
 }

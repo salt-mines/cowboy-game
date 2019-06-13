@@ -60,13 +60,11 @@ public class GameManager : MonoBehaviour
             Instantiate(playerHurtPrefab, player.transform.position, Quaternion.identity);
         }
 
+        GameObject.Find("Lives").GetComponent<LifeDisplay>().SetLives(currentLives);
+
         if (currentLives == 0)
         {
             GameOver();
-        }
-        else
-        {
-            GameObject.Find("Lives").GetComponent<LifeDisplay>().SetLives(currentLives);
         }
     }
 

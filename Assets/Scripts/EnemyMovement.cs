@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+
 [RequireComponent(typeof(Collider2D))]
 public class EnemyMovement : MonoBehaviour
 {
@@ -22,8 +23,6 @@ public class EnemyMovement : MonoBehaviour
 
     private bool enemyAtLeftCorner = false;
 
-    public GameObject oofPrefab;
-
     private GameManager gameManager;
 
 
@@ -38,12 +37,6 @@ public class EnemyMovement : MonoBehaviour
         platformRightCorner = new Vector2(enemyPlatform.bounds.max.x - enemyCollider.bounds.extents.x, enemyPlatform.bounds.max.y);
 
         transform.position = platformRightCorner;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
     }
 
     // Update is called once per frame
@@ -118,9 +111,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            gameManager.playerLives--;
-            Destroy(collision.gameObject);
-            Instantiate(oofPrefab, transform.position, transform.rotation);
+            gameManager.OnPlayerHit(collision.gameObject, gameObject);
         }
     }
 }

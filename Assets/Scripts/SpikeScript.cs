@@ -1,30 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SpikeScript : MonoBehaviour
 {
     private GameManager gameManager;
-    public GameObject oofPrefab;
-    // Start is called before the first frame update
+
+    public Transform playerRespawnPosition;
+
     void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
-            gameManager.playerLives--;
-            Destroy(collision.gameObject);
-            Instantiate(oofPrefab, transform.position, transform.rotation);
+            gameManager.OnPlayerHit(collision.gameObject, gameObject);
+
+            if (playerRespawnPosition)
+            {
+                collision.gameObject.transform.position = playerRespawnPosition.position;
+            }
         }
     }
 }
