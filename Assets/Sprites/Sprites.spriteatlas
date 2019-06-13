@@ -97,7 +97,7 @@ SpriteAtlas:
   - cowboy_walk2
   - tires1
   - saltmines_logo_white
-  - newBG1
+  - grass
   - tumbleweed8
   - pow1
   - Platform
@@ -124,7 +124,7 @@ SpriteAtlas:
   - cowboy_midair
   - cowboy_idle
   - tumbleweed10
-  - newBG2
+  - background
   - neocactusaur_jump2
   - flatplatform2
   - gun2
