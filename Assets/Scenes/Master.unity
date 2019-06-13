@@ -183,6 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels:
   - Level 01
+  - Level 02
   playerHitImmunityTime: 1
   playerLives: 3
   playerHurtPrefab: {fileID: 4739164243848393312, guid: f6770f0c646a6734ca5594d39dcfaab9,
